@@ -148,6 +148,32 @@ openvpn_conf 'server' do
   notifies :restart, 'service[openvpn]'
 end
 
+openvpn_conf 'server' do
+  port '443'
+  proto 'tcp'
+  type node['openvpn']['type']
+  local node['openvpn']['local']
+  routes node['openvpn']['routes']
+  script_security node['openvpn']['script_security']
+  key_dir node['openvpn']['key_dir']
+  tls_key node['openvpn']['tls_key']
+  key_size node['openvpn']['key']['size']
+  subnet node['openvpn']['subnet']
+  netmask node['openvpn']['netmask']
+  user node['openvpn']['user']
+  max_routes node['openvpn']['max_routes']
+  topology node['openvpn']['topology']
+  external_auth node['openvpn']['external_auth']
+  reneg_sec node['openvpn']['reneg_sec']
+  group node['openvpn']['group']
+  log node['openvpn']['log']
+  plugins node['openvpn']['plugins']
+  only_if { node['openvpn']['configure_default_server'] }
+  notifies :restart, 'service[openvpn]'
+end
+
+
+
 service 'openvpn' do
   action [:enable, :start]
 end
