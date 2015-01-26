@@ -148,7 +148,7 @@ openvpn_conf 'server' do
   notifies :restart, 'service[openvpn]'
 end
 
-openvpn_conf 'server' do
+openvpn_conf 'server-443' do
   port '443'
   proto 'tcp'
   type node['openvpn']['type']
