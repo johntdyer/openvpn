@@ -143,6 +143,7 @@ openvpn_conf 'server' do
   reneg_sec node['openvpn']['reneg_sec']
   group node['openvpn']['group']
   log node['openvpn']['log']
+  status_log '/etc/openvpn/openvpn-status.log'
   plugins node['openvpn']['plugins']
   only_if { node['openvpn']['configure_default_server'] }
   notifies :restart, 'service[openvpn]'
@@ -157,8 +158,9 @@ openvpn_conf 'server-443' do
   script_security node['openvpn']['script_security']
   key_dir node['openvpn']['key_dir']
   tls_key node['openvpn']['tls_key']
+  ipp_file '/etc/openvpn/ipp-433.txt'
   key_size node['openvpn']['key']['size']
-  subnet node['openvpn']['subnet']
+  subnet node['openvpn']['tcp']['subnet']
   netmask node['openvpn']['netmask']
   user node['openvpn']['user']
   max_routes node['openvpn']['max_routes']
@@ -166,13 +168,12 @@ openvpn_conf 'server-443' do
   external_auth node['openvpn']['external_auth']
   reneg_sec node['openvpn']['reneg_sec']
   group node['openvpn']['group']
-  log node['openvpn']['log']
+  log "/var/log/openvpn-443.log"
+  status_log '/etc/openvpn/openvpn-status-443.log'
   plugins node['openvpn']['plugins']
   only_if { node['openvpn']['configure_default_server'] }
   notifies :restart, 'service[openvpn]'
 end
-
-
 
 service 'openvpn' do
   action [:enable, :start]

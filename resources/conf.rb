@@ -31,6 +31,7 @@ attribute :key_size, :kind_of => Integer
 attribute :subnet, :kind_of => String
 attribute :netmask, :kind_of => String
 attribute :user, :kind_of => String
+attribute :ipp_file, :kind_of => String, :default => '/etc/openvpn/ipp.txt'
 attribute :group, :kind_of => String
 attribute :reneg_sec, :kind_of => Integer
 attribute :external_auth, :kind_of => String

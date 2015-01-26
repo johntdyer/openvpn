@@ -59,7 +59,7 @@ dh   <%= @key_dir %>/dh<%= @key_size %>.pem
 tls-auth <%= @tls_key %> 0
 <% end -%>
 
-ifconfig-pool-persist /etc/openvpn/ipp.txt
+ifconfig-pool-persist <%=@ipp_file %>
 
 <% if @type == "server" -%>
 <%= @type %> <%= @subnet %> <%= @netmask %>
