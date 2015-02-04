@@ -158,7 +158,7 @@ openvpn_conf 'server-443' do
   script_security node['openvpn']['script_security']
   key_dir node['openvpn']['key_dir']
   tls_key node['openvpn']['tls_key']
-  ipp_file '/etc/openvpn/ipp-433.txt'
+  ipp_file '/etc/openvpn/ipp-443.txt'
   key_size node['openvpn']['key']['size']
   subnet node['openvpn']['tcp']['subnet']
   netmask node['openvpn']['netmask']
