@@ -27,8 +27,8 @@ local <%= @local %>
 <% if @reneg_sec -%>
 reneg-sec <%= @reneg_sec %>
 <% end -%>
-<% if node[:openvpn][:routes_new] -%>
-<% node[:openvpn][:routes_new].each do |route| -%>
+<% if node[:openvpn][:routes] -%>
+<% node[:openvpn][:routes].each do |route| -%>
 <% if route.key?(:address) -%>
 push 'route <%= route[:address] %> <%= route[:mask] %>'     #  <%= route[:comment] %>
 <% else -%>

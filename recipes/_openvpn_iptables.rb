@@ -50,7 +50,7 @@ template "/etc/openvpn/filter_groups.json" do
   mode 0644
   helpers(OpenVpnRouteToIptables)
   variables(
-    routes: node[:openvpn][:routes_new]
+    routes: node[:openvpn][:routes]
   )
 end
 
