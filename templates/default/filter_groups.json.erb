@@ -1,0 +1,21 @@
+{
+  <% if @rules -%>
+  "__DEFAULT__": {
+    "rules": []
+  },
+  <% end -%>
+  "vpn-operations": {
+    "rules": [
+      {
+        "comment": "all traffic",
+        "dst_ip": "0.0.0.0/0"
+      }
+    ]
+  },
+  "vpn-employees": {
+    "rules": <%= merge_employee_rules_and_routes(@routes) %>
+  },
+  "vpn-apcera": {
+    "rules": <%= get_vendor_rules('apcera-rules') %>
+  }
+}

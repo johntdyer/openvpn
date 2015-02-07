@@ -57,7 +57,8 @@ action :create do
     topology:  new_resource.topology,
     plugins: new_resource.plugins,
     ipp_file: new_resource.ipp_file,
-    server_name: server_name
+    server_name: server_name,
+    learn_address: new_resource.learn_address
   }
 
   template "/etc/openvpn/#{new_resource.name}.conf" do

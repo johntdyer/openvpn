@@ -146,6 +146,7 @@ openvpn_conf 'server' do
   status_log '/etc/openvpn/openvpn-status.log'
   plugins node['openvpn']['plugins']
   only_if { node['openvpn']['configure_default_server'] }
+  learn_address '/etc/openvpn/plugins/openvpn-iptables.py'
   notifies :restart, 'service[openvpn]'
 end
 
@@ -172,7 +173,9 @@ openvpn_conf 'server-443' do
   status_log '/etc/openvpn/openvpn-status-443.log'
   plugins node['openvpn']['plugins']
   only_if { node['openvpn']['configure_default_server'] }
+
   notifies :restart, 'service[openvpn]'
+  learn_address '/etc/openvpn/plugins/openvpn-iptables.py'
 end
 
 service 'openvpn' do

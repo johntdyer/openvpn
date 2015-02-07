@@ -49,3 +49,4 @@ attribute :max_routes, :kind_of => Integer
 attribute :topology, :kind_of => String
 attribute :status_log, :kind_of => String, :default => '/etc/openvpn/openvpn-status.log'
 attribute :plugins, :kind_of => Array, :default => []
+attribute :learn_address, :kind_of => String

@@ -15,7 +15,7 @@ plugin <%= p %>
 <% if @external_auth -%>
 <%= @external_auth %>
 <% end -%>
-keepalive 10 120
+keepalive 10 60
 <% if @max_clients -%>
 max-clients <%= @max_clients %>
 <% end -%>
@@ -27,13 +27,17 @@ local <%= @local %>
 <% if @reneg_sec -%>
 reneg-sec <%= @reneg_sec %>
 <% end -%>
-<% if @routes -%>
-<% @routes.each do |route| -%>
-<%= route %>
+<% if node[:openvpn][:routes_new] -%>
+<% node[:openvpn][:routes_new].each do |route| -%>
+<% if route.key?(:address) -%>
+push 'route <%= route[:address] %> <%= route[:mask] %>'     #  <%= route[:comment] %>
+<% else -%>
+#  <%= route[:comment] %>
+<% end -%>
 <% end -%>
 <% end -%>
 <% if @script_security > 1 -%>
-up /etc/openvpn/server.up.sh
+# up /etc/openvpn/server.up.sh
 <% end -%>
 
 <% if @dhcp_dns -%>
@@ -83,3 +87,7 @@ verb <%= @verb %>  # don't spam the log with messages.
 mute <%= @mute %>  # suppress identical messages > 10 occurances.
 
 script-security <%= @script_security %>
+
+<% if @learn_address -%>
+learn-address <%= @learn_address %>
+<% end -%>
